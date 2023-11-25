@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Notification</title>
+</head>
+<body>
+    <button>Click here to get notified</button>
+
+    <script>
+        const button = document.querySelector("button")
+
+        button.addEventListener("click", () => {
+            Notification.requestPermission().then(perm => {
+                if(perm === "granted") {
+                    const notification = new Notification("Example notification", {
+                        body: "This is an example",
+                        data: {hello: "world"},
+                        icon: "logo.png",
+                    })
+
+                    notification.addEventListener("error", e => {
+                        alert("error");
+                    })
+                }
+            })
+        })
+    </script>
+</body>
+</html>
